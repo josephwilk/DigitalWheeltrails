@@ -42,11 +42,6 @@ MonoBehaviour:
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-te-IN
-  - m_GUID: 729adb78fc064423f934f328344a86ea
-    m_Address: ReasonsUX_ru
-    m_ReadOnly: 1
-    m_SerializedLabels:
-    - Locale-ru
   - m_GUID: 8808ef36934304880ab7bcdfba3b37f1
     m_Address: ReasonsUX_ja
     m_ReadOnly: 1
