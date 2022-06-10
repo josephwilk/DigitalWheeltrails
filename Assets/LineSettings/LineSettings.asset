@@ -23,7 +23,7 @@ MonoBehaviour:
   endCapVertices: 0
   minDistanceBeforeNewPoint: 0.002
   allowSmoothing: 0
-  dampen: 0.03
+  dampen: 0.035
   allowSimplification: 1
   tolerance: 0.002
   applySimplifyAfterPoints: 400
