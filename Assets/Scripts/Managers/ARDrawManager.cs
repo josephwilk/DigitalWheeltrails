@@ -33,6 +33,8 @@ public class ARDrawManager : Singleton<ARDrawManager>
     private bool drawActive { get; set; }
     private bool initDraw = true;
 
+    private int distanceBetweenWheels = 600; //Screen distance.
+
     void Update()
     {
 #if !UNITY_EDITOR
@@ -81,10 +83,10 @@ public class ARDrawManager : Singleton<ARDrawManager>
 
         if (drawActive)
         {
-                Vector3 leftPos = new Vector3((Screen.width / 2) - 600,
+                Vector3 leftPos = new Vector3((Screen.width / 2) - distanceBetweenWheels,
                                       (Screen.height / 2)        - 400,
                                       lineSettings.distanceFromCamera);
-                Vector3 rightPos = new Vector3((Screen.width / 2) + 600,
+                Vector3 rightPos = new Vector3((Screen.width / 2) + distanceBetweenWheels,
                                           (Screen.height / 2)     - 400,
                                           lineSettings.distanceFromCamera);
 
@@ -96,31 +98,46 @@ public class ARDrawManager : Singleton<ARDrawManager>
                 OnDraw?.Invoke();
                 initDraw = false;
 
-                ARAnchor leftAnchor = anchorManager.AddAnchor(new Pose(leftWorldPosition, Quaternion.identity));
-                if (leftAnchor == null)
-                    Debug.LogError("Error creating reference point");
-                else
-                {
-                    anchors.Add(leftAnchor);
-                    ARDebugManager.Instance.LogInfo($"Anchor created & total of {anchors.Count} anchor(s)");
-                }
+
+
+
+               // Pose leftPose = new Pose(leftWorldPosition, Quaternion.identity);
+                //var gameObject = Instantiate(prefab, leftPose.position, leftPose.rotation);
+                // Make sure the new GameObject has an ARAnchor component
+                //ARAnchor anchor = gameObject.GetComponent<ARAnchor>();
+                //if (anchor == null)
+                //{
+                //    anchor = gameObject.AddComponent<ARAnchor>();
+                //}
+
+
+                //ARAnchor leftAnchor = anchorManager.AddAnchor(new Pose(leftWorldPosition, Quaternion.identity));
+
+
+                //if (leftAnchor == null)
+                //    Debug.LogError("Error creating reference point");
+                //else
+                //{
+                //    anchors.Add(leftAnchor);
+                //    ARDebugManager.Instance.LogInfo($"Anchor created & total of {anchors.Count} anchor(s)");
+                //}
                 ARCurvedLine leftLine = new ARCurvedLine(lineSettings);
                 Lines.Add(0, leftLine);
-                leftLine.AddNewLineRenderer(transform, leftAnchor, leftWorldPosition);
+                leftLine.AddNewLineRenderer(transform, leftWorldPosition);
 
                 OnDraw?.Invoke();
 
-                ARAnchor rightAnchor = anchorManager.AddAnchor(new Pose(rightWorldPosition, Quaternion.identity));
-                if (rightAnchor == null)
-                    Debug.LogError("Error creating reference point");
-                else
-                {
-                    anchors.Add(rightAnchor);
-                    ARDebugManager.Instance.LogInfo($"Anchor created & total of {anchors.Count} anchor(s)");
-                }
+                //ARAnchor rightAnchor = anchorManager.AddAnchor(new Pose(rightWorldPosition, Quaternion.identity));
+                //if (rightAnchor == null)
+                //    Debug.LogError("Error creating reference point");
+                //else
+                //{
+                //    anchors.Add(rightAnchor);
+                //    ARDebugManager.Instance.LogInfo($"Anchor created & total of {anchors.Count} anchor(s)");
+                //}
                 ARCurvedLine rightLine = new ARCurvedLine(lineSettings);
                 Lines.Add(1, rightLine);
-                rightLine.AddNewLineRenderer(transform, rightAnchor, rightWorldPosition);
+                rightLine.AddNewLineRenderer(transform, rightWorldPosition);
                 ARDebugManager.Instance.LogInfo("first setup");
             }
             else
@@ -145,8 +162,8 @@ public class ARDrawManager : Singleton<ARDrawManager>
     {
         if(!CanDraw) return;
 
-        Vector3 mousePosition = arCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x-600, Input.mousePosition.y-400, lineSettings.distanceFromCamera));
-        Vector3 mousePositionOffset = arCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x+600, Input.mousePosition.y-400, lineSettings.distanceFromCamera));
+        Vector3 mousePosition = arCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x-distanceBetweenWheels, Input.mousePosition.y-400, lineSettings.distanceFromCamera));
+        Vector3 mousePositionOffset = arCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x+distanceBetweenWheels, Input.mousePosition.y-400, lineSettings.distanceFromCamera));
 
         if (Input.GetMouseButton(0))
         {
@@ -158,8 +175,8 @@ public class ARDrawManager : Singleton<ARDrawManager>
                 ARCurvedLine line2 = new ARCurvedLine(lineSettings);
                 Lines.Add(0, line1);
                 Lines.Add(1, line2);
-                line1.AddNewLineRenderer(transform, null, mousePosition);
-                line2.AddNewLineRenderer(transform, null, mousePositionOffset);
+                line1.AddNewLineRenderer(transform, mousePosition);
+                line2.AddNewLineRenderer(transform, mousePositionOffset);
             }
             else 
             {

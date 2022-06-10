@@ -85,31 +85,17 @@ public class ARCurvedDrawManager : Singleton<ARDrawManager>
                 OnDraw?.Invoke();
                 initDraw = false;
 
-                ARAnchor leftAnchor = anchorManager.AddAnchor(new Pose(leftWorldPosition, Quaternion.identity));
-                if (leftAnchor == null)
-                    Debug.LogError("Error creating reference point");
-                else
-                {
-                    anchors.Add(leftAnchor);
-                    ARDebugManager.Instance.LogInfo($"Anchor created & total of {anchors.Count} anchor(s)");
-                }
+               
                 ARCurvedLine leftLine = new ARCurvedLine(lineSettings);
                 Lines.Add(0, leftLine);
-                leftLine.AddNewLineRenderer(transform, leftAnchor, leftWorldPosition);
+                leftLine.AddNewLineRenderer(transform, leftWorldPosition);
 
                 OnDraw?.Invoke();
 
-                ARAnchor rightAnchor = anchorManager.AddAnchor(new Pose(rightWorldPosition, Quaternion.identity));
-                if (rightAnchor == null)
-                    Debug.LogError("Error creating reference point");
-                else
-                {
-                    anchors.Add(rightAnchor);
-                    ARDebugManager.Instance.LogInfo($"Anchor created & total of {anchors.Count} anchor(s)");
-                }
+              
                 ARCurvedLine rightLine = new ARCurvedLine(lineSettings);
                 Lines.Add(1, rightLine);
-                rightLine.AddNewLineRenderer(transform, rightAnchor, rightWorldPosition);
+                rightLine.AddNewLineRenderer(transform,  rightWorldPosition);
                 ARDebugManager.Instance.LogInfo("first setup");
             }
             else
@@ -147,8 +133,8 @@ public class ARCurvedDrawManager : Singleton<ARDrawManager>
                 ARCurvedLine line2 = new ARCurvedLine(lineSettings);
                 Lines.Add(0, line1);
                 Lines.Add(1, line2);
-                line1.AddNewLineRenderer(transform, null, mousePosition);
-                line2.AddNewLineRenderer(transform, null, mousePositionOffset);
+                line1.AddNewLineRenderer(transform,  mousePosition);
+                line2.AddNewLineRenderer(transform,  mousePositionOffset);
             }
             else
             {

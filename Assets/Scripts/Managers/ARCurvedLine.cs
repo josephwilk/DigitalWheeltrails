@@ -58,11 +58,12 @@ public class ARCurvedLine
             float smoothTime = settings.dampen;
             float xVelocity = 0.0f;
             float yVelocity = 0.0f;
+            float zVelocity = 0.0f;
 
             Vector3 smoothedPos = prevPointDistance;
             smoothedPos.x = Mathf.SmoothDamp(prevPointDistance.x, position.x, ref xVelocity, smoothTime);
-            smoothedPos.y = -0.6f;////Mathf.SmoothDamp(prevPointDistance.y, position.y, ref yVelocity, smoothTime);
-            smoothedPos.z = Mathf.SmoothDamp(prevPointDistance.z, position.z, ref yVelocity, smoothTime);
+            smoothedPos.y = Mathf.SmoothDamp(prevPointDistance.y, position.y, ref yVelocity, smoothTime); //-0.6f
+            smoothedPos.z = Mathf.SmoothDamp(prevPointDistance.z, position.z, ref zVelocity, smoothTime);
 
 
             //smoothedPos = smoothAxis(1, 50, smoothedPos);
@@ -163,13 +164,15 @@ public class ARCurvedLine
         }
     }
 
-    public void AddNewLineRenderer(Transform parent, ARAnchor anchor, Vector3 position)
+    public void AddNewLineRenderer(Transform parent, Vector3 position)
     {
         positionCount = 2;
         GameObject go = new GameObject($"LineRenderer");
+        
 
-        go.transform.parent = anchor?.transform ?? parent;
+        go.transform.parent = parent;
         go.transform.position = position;
+        go.AddComponent<ARAnchor>();
         go.tag = settings.lineTagName;
 
 
