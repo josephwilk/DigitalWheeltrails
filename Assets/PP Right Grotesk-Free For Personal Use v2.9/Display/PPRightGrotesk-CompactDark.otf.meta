@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: f1a433a3275d6430ab5818e2d496e9a6
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - PP Right Grotesk
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 50cc4982cca7548228d698c22385a3aa, type: 3}
+  - {fileID: 12800000, guid: 006e056f4791646ba9c1591c00ffd589, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
