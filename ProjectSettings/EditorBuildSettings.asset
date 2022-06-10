@@ -13,5 +13,7 @@ EditorBuildSettings:
       type: 2}
     UnityEditor.XR.ARKit.ARKitSettings: {fileID: 11400000, guid: 79f371bd6ffef4fb68c5e6025f22f69f,
       type: 2}
+    com.unity.addressableassets: {fileID: 11400000, guid: ffc98ca21cd2d25468c244ccdebf2b33,
+      type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 92ecd2e551c304604a0d2d16a523c356,
       type: 2}
