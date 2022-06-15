@@ -13,6 +13,10 @@ public class ARDrawManager : Singleton<ARDrawManager>
     private LineSettings lineSettings = null;
 
     [SerializeField]
+    private GameObject drawStatus = null;
+
+
+    [SerializeField]
     private UnityEvent OnDraw = null;
 
     [SerializeField]
@@ -58,13 +62,28 @@ public class ARDrawManager : Singleton<ARDrawManager>
 
     public void flipDraw()
     {
-       
-        drawActive = !drawActive;
+        setDrawMode(!drawActive);
+    }
+
+    private void setDrawMode(bool mode)
+    {
+        drawActive = mode;
+
         if (drawActive == false)
         {
             initDraw = true;
         }
+        if (drawActive)
+        {
+            drawStatus.SetActive(true);
+        }
+        else
+        {
+            drawStatus.SetActive(false);
+        }
     }
+
+
 
     public void AllowDraw(bool isAllow)
     {
@@ -111,8 +130,6 @@ public class ARDrawManager : Singleton<ARDrawManager>
 
                 Lines.Add(0, leftLine);
                 leftLine.AddNewLineRenderer(transform, leftAnchor, leftWorldPosition);
-
-                OnDraw?.Invoke();
 
                 ARCurvedLine rightLine = new ARCurvedLine(lineSettings);
                 GameObject rightAnchor = createAnchor(rightWorldPosition);
@@ -184,8 +201,7 @@ public class ARDrawManager : Singleton<ARDrawManager>
 
     public void ClearLines()
     {
-        drawActive = false;
-        initDraw = true;
+        setDrawMode(false);
         GameObject[] lines = GetAllLinesInScene();
         foreach (GameObject currentLine in lines)
         {
@@ -193,8 +209,6 @@ public class ARDrawManager : Singleton<ARDrawManager>
             Destroy(currentLine);
         }
     }
-
-
 
     private GameObject createAnchor(Vector3 hit)
     {
