@@ -41,8 +41,11 @@ public class ARCurvedLine
 
     public void AddPoint(Vector3 position)
     {
-        if (prevPointDistance == null)
+        bool firstPoint = (prevPointDistance == Vector3.zero);
+        if (firstPoint)
+        {
             prevPointDistance = position;
+        }
 
         if (prevPointDistance != null &&
             Mathf.Abs(Vector3.Distance(prevPointDistance, position)) >= settings.minDistanceBeforeNewPoint)
