@@ -198,7 +198,10 @@ public class ARDrawManager : Singleton<ARDrawManager>
 
     private GameObject createAnchor(Vector3 hit)
     {
+
+        //m_AnchorManager.anchorPrefab
         Pose p = new Pose(hit, Quaternion.identity);
+        prefab = new GameObject();
         GameObject anchorContainer = Instantiate(prefab, p.position, p.rotation);
         ARAnchor anchor = null;
         anchor = anchorContainer.GetComponent<ARAnchor>();
