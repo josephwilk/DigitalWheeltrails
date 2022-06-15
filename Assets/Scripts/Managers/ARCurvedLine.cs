@@ -195,6 +195,8 @@ public class ARCurvedLine
 
         //goLineRenderer.alignment = LineAlignment.TransformZ;
         goLineRenderer.generateLightingData = false;
+        goLineRenderer.lightProbeUsage = UnityEngine.Rendering.LightProbeUsage.Off;
+        goLineRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
         goLineRenderer.textureMode = LineTextureMode.Tile;
 
         goLineRenderer.numCornerVertices = settings.cornerVertices;
