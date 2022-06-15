@@ -1,6 +1,13 @@
 ﻿using UnityEngine;
 using UnityEngine.XR.ARFoundation;
+using System.Collections.Generic;
+using System;
+using DilmerGames.Core.Singletons;
 using EasyCurvedLine;
+using UnityEngine.Events;
+using UnityEngine.EventSystems;
+using EasyCurvedLine;
+
 
 public class ARCurvedLine
 {
@@ -52,11 +59,7 @@ public class ARCurvedLine
         {
 
             positionCount++;
-
             LineRenderer.positionCount = positionCount;
-
-            //Vector3 smoothedPos = prevPointDistance + (position - prevPointDistance)*0.5f;
-            //Vector3 smoothedPos = smoothAxis(1, 100, position);
 
             float smoothTime = settings.dampen;
             float xVelocity = 0.0f;
@@ -64,47 +67,21 @@ public class ARCurvedLine
             float zVelocity = 0.0f;
 
             Vector3 smoothedPos = prevPointDistance;
-            smoothedPos.x = Mathf.SmoothDamp(prevPointDistance.x, position.x, ref xVelocity, smoothTime);
-            smoothedPos.y = Mathf.SmoothDamp(prevPointDistance.y, position.y, ref yVelocity, smoothTime); //-0.6f
-            smoothedPos.z = Mathf.SmoothDamp(prevPointDistance.z, position.z, ref zVelocity, smoothTime);
 
+            if (firstPoint)
+            {
+                smoothedPos = position;
+            }
+            else
+            {
+               smoothedPos.x = Mathf.SmoothDamp(prevPointDistance.x, position.x, ref xVelocity, smoothTime);
+               smoothedPos.y = Mathf.SmoothDamp(prevPointDistance.y, position.y, ref yVelocity, smoothTime); //-0.6f
+               smoothedPos.z = Mathf.SmoothDamp(prevPointDistance.z, position.z, ref zVelocity, smoothTime);
+            }
 
-            //smoothedPos = smoothAxis(1, 50, smoothedPos);
-
-            //Mathf.SmoothDampAngle(transform.eulerAngles.y, target.eulerAngles.y, ref yVelocity, smooth);
-            //Mathf.SmoothDamp(transform.position.y, target.position.y, ref yVelocity, smoothTime);
-
-            //smoothedPos = smoothAxis(0, 2, position);
-            //2smoothedPos = smoothAxis(2, 2, position);
-            //smoothedPos.z = (prevPointDistance.z + smoothedPos.z)*0.5f;
-
-            LineRenderer.SetPosition(positionCount - 1, smoothedPos);
-            
+            LineRenderer.SetPosition(positionCount - 1, smoothedPos);   
             prevPointDistance = smoothedPos;
 
-
-            //ARDebugManager.Instance.LogInfo($"pre-smoothing: [{LineRenderer.positionCount}]");
-            //Vector3[] smoothLines = LineSmoother.SmoothLine(linePositions, settings.minDistanceBeforeNewPoint / 2.0f);
-
-            //LineRenderer.positionCount = (positionCount + smoothLines.Length)-1;
-            //for (int i = 0; i < smoothLines.Length-1; i++) {
-            //    LineRenderer.SetPosition(positionCount - 1, smoothLines[i]);
-            //    positionCount++;
-            //}
-
-            //prevPointDistance = smoothLines[smoothLines.Length-1];
-
-            //ARDebugManager.Instance.LogInfo($"post-smoothing: [{LineRenderer.positionCount}]");
-
-            //ARDebugManager.Instance.LogInfo($"post-smoothing: [{smoothLines.Length}, {positionCount}]");
-
-
-            //LineRenderer.positionCount = smoothLines.Length;
-            //LineRenderer.SetPositions(smoothLines);
-            ////LineRenderer.positionCount = smoothLines.Length;
-            //positionCount = LineRenderer.positionCount;
-
-            //ARDebugManager.Instance.LogInfo($"post-smoothing: [{smoothLines.Length}, {positionCount}]");
 
             if (settings.allowSmoothing)
             {
@@ -128,10 +105,6 @@ public class ARCurvedLine
                 LineRenderer.Simplify(settings.tolerance);
                 positionCount = LineRenderer.positionCount;
                 ARDebugManager.Instance.LogInfo($"simplfy: [{oldCount-positionCount}]");
-
-
-
-             
 
                 positionCount = LineRenderer.positionCount;
             }
@@ -167,24 +140,19 @@ public class ARCurvedLine
         }
     }
 
-    public void AddNewLineRenderer(Transform parent, Vector3 position)
+    public void AddNewLineRenderer(Transform parent, GameObject anchorContainer, Vector3 position)
     {
         positionCount = 2;
-        GameObject go = new GameObject($"LineRenderer");
-        
+        if (!anchorContainer)
+        {
+            anchorContainer = new GameObject($"LineRenderer");
+            anchorContainer.transform.parent = parent;
+        }
 
-        go.transform.parent = parent;
-        go.transform.position = position;
-        go.AddComponent<ARAnchor>();
-        go.tag = settings.lineTagName;
+        anchorContainer.tag = settings.lineTagName;
 
+        LineRenderer goLineRenderer = anchorContainer.AddComponent<LineRenderer>();
 
-        //LineRenderer goLineRenderer;
-
-        LineRenderer goLineRenderer = go.AddComponent<LineRenderer>();
-       // goLineRenderer = goCurvedLineRenderer.lineRenderer;
-
-       // goLineRenderer.startWidth = settings.startWidth;
         goLineRenderer.startWidth = settings.startWidth;
         goLineRenderer.endWidth = settings.endWidth;
 
@@ -204,8 +172,6 @@ public class ARCurvedLine
 
         goLineRenderer.numCornerVertices = settings.cornerVertices;
         goLineRenderer.numCapVertices = settings.endCapVertices;
-
-        //goCurvedLineRenderer.lineRenderer = goLineRenderer;
 
         goLineRenderer.SetPosition(0, position);
         goLineRenderer.SetPosition(1, position);
