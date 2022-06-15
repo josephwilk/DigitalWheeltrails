@@ -122,7 +122,7 @@ public class ScreenCapture : MonoBehaviour
         ss.Apply();
 
         // Save the screenshot to Gallery/Photos
-        NativeGallery.Permission permission = NativeGallery.SaveImageToGallery(ss, "GalleryTest", "Image.png", (success, path) => Debug.Log("Media save result: " + success + " " + path));
+        NativeGallery.Permission permission = NativeGallery.SaveImageToGallery(ss, "Wheeltrails", "screenshot.png", (success, path) => Debug.Log("Media save result: " + success + " " + path));
 
         Debug.Log("Permission result: " + permission);
 
@@ -133,17 +133,5 @@ public class ScreenCapture : MonoBehaviour
     public void TakeScreenShot()
     {
         StartCoroutine(TakeScreenshotAndSave());
-
-        //if (!isProcessing)
-        //{
-        //    CaptureScreenshot();
-
-
-
-        //}
-        //else
-        //{
-        //    Debug.Log("Currently Processing");
-        //}
     }
 }
