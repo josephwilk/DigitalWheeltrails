@@ -15,7 +15,6 @@ public class ARDrawManager : Singleton<ARDrawManager>
     [SerializeField]
     private GameObject drawStatus = null;
 
-
     [SerializeField]
     private UnityEvent OnDraw = null;
 

@@ -1,9 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.XR.ARFoundation;
 using System.Collections.Generic;
-using System;
 using DilmerGames.Core.Singletons;
-using EasyCurvedLine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using EasyCurvedLine;
