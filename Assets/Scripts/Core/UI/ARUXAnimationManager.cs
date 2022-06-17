@@ -196,19 +196,19 @@ public class ARUXAnimationManager : MonoBehaviour
         set => m_LocalizeText = value;
     }
 
-    IEnumerator Start()
+    void Start()
     {
-        AssetBundleCreateRequest asyncBundleRequest = AssetBundle.LoadFromFileAsync(Path.Combine(Application.streamingAssetsPath, bundleName));
-        yield return asyncBundleRequest;
+        //AssetBundleCreateRequest asyncBundleRequest = AssetBundle.LoadFromFileAsync(Path.Combine(Application.streamingAssetsPath, bundleName));
+        //yield return asyncBundleRequest;
 
-        AssetBundle localAssetBundle = asyncBundleRequest.assetBundle;
-        if(localAssetBundle == null)
-        {
-            Debug.LogError("Failed to load AssetBundle");
-            yield break;
-        }
-        m_FindAPlaneClip = localAssetBundle.LoadAsset<VideoClip>(assetName[0]);
-        m_TapToPlaceClip = localAssetBundle.LoadAsset<VideoClip>(assetName[1]);
+        //AssetBundle localAssetBundle = asyncBundleRequest.assetBundle;
+        //if(localAssetBundle == null)
+        //{
+        //    Debug.LogError("Failed to load AssetBundle");
+        //    yield break;
+        //}
+        //m_FindAPlaneClip = localAssetBundle.LoadAsset<VideoClip>(assetName[0]);
+        //m_TapToPlaceClip = localAssetBundle.LoadAsset<VideoClip>(assetName[1]);
         m_StartColor = m_AlphaWhite;
         m_TargetColor = m_White;
     }
