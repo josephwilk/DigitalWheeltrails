@@ -40,7 +40,9 @@ public class ScreenCapture : MonoBehaviour
     public void Share()
     {
         NativeShare sharing = new NativeShare();
-        //sharing.AddFile
+        String file = SaveScreenshotToFile();
+        sharing.AddFile(file);
+        sharing.Share();
     }
 
     public void Download()
@@ -80,6 +82,52 @@ public class ScreenCapture : MonoBehaviour
         // return filename
         return filename;
     }
+
+
+    private String SaveScreenshotToFile() {
+
+        // get our filename
+        string filename = CreateFileName((int)rect.width, (int)rect.height);
+        // get file header/data bytes for the specified image format
+        byte[] fileHeader = null;
+        byte[] fileData = null;
+        //Set the format and encode based on it
+                if (format == Format.RAW)
+                    {
+            fileData = screenShot.GetRawTextureData();
+                    }
+                else if (format == Format.PNG)
+                    {
+            fileData = screenShot.EncodeToPNG();
+                    }
+                else if (format == Format.JPG)
+                    {
+            fileData = screenShot.EncodeToJPG();
+                    }
+                else //For ppm files
+                    {
+                        // create a file header - ppm files
+            string headerStr = string.Format("P6\n{0} {1}\n255\n", rect.width, rect.height);
+            fileHeader = System.Text.Encoding.ASCII.GetBytes(headerStr);
+            fileData = screenShot.GetRawTextureData();
+                    }
+        
+        //        // create new thread to offload the saving from the main thread
+        //new System.Threading.Thread(() =>
+        //        {
+                    var file = System.IO.File.Create(filename);
+                    if (fileHeader != null)
+                        {
+                            file.Write(fileHeader, 0, fileHeader.Length);
+                        }
+        file.Write(fileData, 0, fileData.Length);
+        file.Close();
+        Debug.Log(string.Format("Screenshot Saved {0}, size {1}", filename, fileData.Length));
+        //isProcessing = false;
+        //        }).Start();
+        return filename;
+}
+
 
     private IEnumerator TakeScreenshotAndSave()
     {
