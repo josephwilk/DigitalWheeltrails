@@ -176,6 +176,6 @@ public class ARCurvedLine
 
         LineRenderer = goLineRenderer;
 
-        ARDebugManager.Instance.LogInfo($"New curved line renderer created");
+        ARDebugManager.Instance.LogInfo($"New line renderer");
     }
 }

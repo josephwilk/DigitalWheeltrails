@@ -94,7 +94,9 @@ public class ARDrawManager : Singleton<ARDrawManager>
     {
         if(!CanDraw) return;
 
-        if (Input.touchCount > 0 && EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId))
+        if (Input.touchCount > 0 &&
+            Input.GetTouch(0).phase == TouchPhase.Began &&
+            EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId))
         {
             return;
         }
@@ -149,7 +151,6 @@ public class ARDrawManager : Singleton<ARDrawManager>
         {
             if (Lines.ContainsKey(0))
             {
-                ARDebugManager.Instance.LogInfo("cleanup");
                 Lines.Remove(0);
                 Lines.Remove(1);
             }
@@ -165,7 +166,12 @@ public class ARDrawManager : Singleton<ARDrawManager>
         Vector3 rightPos = arCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x+distanceBetweenWheels,
                                                                         Input.mousePosition.y-400, lineSettings.distanceFromCamera));
 
-       
+        if (Input.GetMouseButton(0) && EventSystem.current.IsPointerOverGameObject())
+        {
+            return;
+        }
+
+
         if (Input.GetMouseButton(0))
         {
             OnDraw?.Invoke();
