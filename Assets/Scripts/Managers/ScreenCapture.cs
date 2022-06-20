@@ -38,7 +38,6 @@ public class ScreenCapture : MonoBehaviour
         NativeGallery.Permission permission = NativeGallery.SaveImageToGallery(screenShot, "Wheeltrails", "wheeltrails.png",
           (success, path) => Debug.Log("Media save result: " + success + " " + path));
 
-        ARDebugManager.Instance.LogInfo("SAVED");
         Debug.Log("Permission result: " + permission);
     }
 
@@ -97,6 +96,5 @@ public class ScreenCapture : MonoBehaviour
         previewImage.sprite = captureSprite;
         imageGui.SetActive(true);
         imageGui.GetComponent<UIPane>().Show();
-
     }
 }
