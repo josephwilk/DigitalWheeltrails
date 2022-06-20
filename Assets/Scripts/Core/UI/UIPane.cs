@@ -18,6 +18,7 @@ namespace DilmerGames.UI
         public UnityEvent onShow;
         public UnityEvent onHide;
         public UnityEvent onEscapeBtn;
+        public UnityEvent onHidden;
 
         private CanvasGroup canvas;
         private Coroutine fadeRoutine;
@@ -158,7 +159,10 @@ namespace DilmerGames.UI
             canvas.blocksRaycasts = IsShowing;
 
             if (!IsShowing)
+            {
                 gameObject.SetActive(false);
+                onHidden.Invoke();
+            }
 
             fadeRoutine = null;
         }
