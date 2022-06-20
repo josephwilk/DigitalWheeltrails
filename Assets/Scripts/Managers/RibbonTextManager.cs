@@ -31,14 +31,32 @@ public class RibbonTextManager : MonoBehaviour
         gameObject.SetActive(true);
     }
 
-    public void Close()
+    public void fillTextSpace()
     {
-        gameObject.SetActive(false);
+        
+        int limit = textInputArea.characterLimit;
+        string currentText = textInputArea.text;
+        float s = limit / textInputArea.text.Length;
+        int dup = Mathf.FloorToInt(s);
+        ARDebugManager.Instance.LogInfo($"{dup}");
+        if (dup > 1)
+        {
+            string paddedText = "";
+            for (int i = 0; i < dup; i++) {
+                paddedText = $"{paddedText.Trim()} {currentText.Trim()}".Trim();
+            }
+            ARDebugManager.Instance.LogInfo($"{paddedText}");
+            container.text = paddedText;
+            
+        }
+        else
+        {
+            container.text = textInputArea.text;
+        }
     }
 
     public void onTextChange(string txt)
     {
-        container.text = txt;
         charLimitInput.text = $"{txt.Length}/{textInputArea.characterLimit}";
     }
 
