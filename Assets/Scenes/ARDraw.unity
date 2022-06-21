@@ -3859,7 +3859,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   debugAreaText: {fileID: 1223412312}
-  enableDebug: 1
+  enableDebug: 0
   maxLines: 20
 --- !u!1 &1427409883
 GameObject:
@@ -4851,8 +4851,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Wheeltrails Wheeltrails Wheeltrails
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: ac40facf4e5f74d2f910acb4a74be26f, type: 2}
-  m_sharedMaterial: {fileID: 7361305596757145558, guid: ac40facf4e5f74d2f910acb4a74be26f,
+  m_fontAsset: {fileID: 11400000, guid: a61e9fcdcceb14d0eb42534fa92555cb, type: 2}
+  m_sharedMaterial: {fileID: 4774329705586141952, guid: a61e9fcdcceb14d0eb42534fa92555cb,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -4877,8 +4877,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 42.4
-  m_fontSizeBase: 42.4
+  m_fontSize: 44.37
+  m_fontSizeBase: 44.37
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -4887,7 +4887,7 @@ MonoBehaviour:
   m_HorizontalAlignment: 32
   m_VerticalAlignment: 256
   m_textAlignment: 65535
-  m_characterSpacing: -1.02
+  m_characterSpacing: -1.8
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -4942,7 +4942,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 7361305596757145558, guid: ac40facf4e5f74d2f910acb4a74be26f, type: 2}
+  - {fileID: 4774329705586141952, guid: a61e9fcdcceb14d0eb42534fa92555cb, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
