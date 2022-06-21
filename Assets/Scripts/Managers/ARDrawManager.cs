@@ -1,10 +1,12 @@
 ﻿using System.Collections.Generic;
 using System;
 using DilmerGames.Core.Singletons;
+using DilmerGames.UI;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.XR.ARFoundation;
+
 
 [RequireComponent(typeof(ARAnchorManager))]
 public class ARDrawManager : Singleton<ARDrawManager>
@@ -230,7 +232,7 @@ public class ARDrawManager : Singleton<ARDrawManager>
         {
             anchor = anchorContainer.AddComponent<ARAnchor>();
         }
-        anchors.Add(anchor);
+        //anchors.Add(anchor);
         return anchorContainer;
     }
 }
