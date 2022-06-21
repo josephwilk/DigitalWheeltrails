@@ -66,7 +66,7 @@ public class ARDrawManager : Singleton<ARDrawManager>
         setDrawMode(!drawActive);
     }
 
-    private void setDrawMode(bool mode)
+    public void setDrawMode(bool mode)
     {
         drawActive = mode;
 
