@@ -9,10 +9,20 @@ public class RibbonTextManager : MonoBehaviour
     public TMPro.TextMeshProUGUI charLimitInput;
     public TMPro.TMP_InputField textInputArea;
 
+    private string defaultText = "";
+    const string WHEELTRAILS_TXT = "WheeltrailsText";
     
     // Start is called before the first frame update
     void Start()
     {
+    }
+
+    public void Init()
+    {
+        defaultText = PlayerPrefs.GetString(WHEELTRAILS_TXT, "Wheeltrails");
+        ARDebugManager.Instance.LogInfo(defaultText);
+        textInputArea.text = defaultText;
+        fillTextSpace();
     }
 
     // Update is called once per frame
@@ -45,7 +55,6 @@ public class RibbonTextManager : MonoBehaviour
             for (int i = 0; i < dup; i++) {
                 paddedText = $"{paddedText.Trim()} {currentText.Trim()}".Trim();
             }
-            ARDebugManager.Instance.LogInfo($"{paddedText}");
             container.text = paddedText;
             
         }
@@ -53,6 +62,8 @@ public class RibbonTextManager : MonoBehaviour
         {
             container.text = textInputArea.text;
         }
+        PlayerPrefs.SetString(WHEELTRAILS_TXT, currentText);
+        ARDebugManager.Instance.LogInfo(PlayerPrefs.GetString(WHEELTRAILS_TXT, "NO?"));
     }
 
     public void onTextChange(string txt)
