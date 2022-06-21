@@ -13,7 +13,7 @@ public class ARDrawManager : Singleton<ARDrawManager>
     private LineSettings lineSettings = null;
 
     [SerializeField]
-    private GameObject drawStatus = null;
+    private UIPane drawStatus = null;
 
     [SerializeField]
     private UnityEvent OnDraw = null;
@@ -74,11 +74,11 @@ public class ARDrawManager : Singleton<ARDrawManager>
         }
         if (drawActive)
         {
-            drawStatus.SetActive(true);
+            drawStatus.Show();
         }
         else
         {
-            drawStatus.SetActive(false);
+            drawStatus.Hide();
         }
     }
 
@@ -170,7 +170,7 @@ public class ARDrawManager : Singleton<ARDrawManager>
         {
             return;
         }
-
+        
 
         if (Input.GetMouseButton(0))
         {
@@ -179,6 +179,7 @@ public class ARDrawManager : Singleton<ARDrawManager>
 
             if (Lines.Keys.Count == 0)
             {
+                flipDraw();
                 ARCurvedLine line1 = new ARCurvedLine(lineSettings);
                 ARCurvedLine line2 = new ARCurvedLine(lineSettings);
                 Lines.Add(0, line1);
@@ -194,6 +195,7 @@ public class ARDrawManager : Singleton<ARDrawManager>
         }
         else if(Input.GetMouseButtonUp(0))
         {
+            flipDraw();
             Lines.Remove(0);
             Lines.Remove(1);
         }
