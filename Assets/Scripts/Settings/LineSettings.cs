@@ -9,33 +9,32 @@ public class LineSettings : ScriptableObject
 
     public Color endColor = Color.white;
 
-    public float startWidth = 0.005f;
+    public float startWidth = 0.03f;
 
-    public float endWidth = 0.005f;
+    public float endWidth = 0.03f;
 
-    public float distanceFromCamera = 0.3f;
+    public float distanceFromCamera = 0.6f;
 
     public Material defaultMaterial;
 
-    public int cornerVertices = 5;
+    public int cornerVertices = 140;
 
     public int endCapVertices = 5;
 
     [Range(0, 1.0f)]
-    public float minDistanceBeforeNewPoint = 0.001f;
+    public float minDistanceBeforeNewPoint = 0.002f;
 
     [Header("Smoothing Options")]
-    public bool allowSmoothing = false;
+    public bool allowSmoothing = true;
 
-    public float dampen = 0.08f;
+    public float dampen = 0.035f;
 
 
     [Header("Tolerance Options")]
     public bool allowSimplification = false;
 
-    public float tolerance = 0.001f;
+    public float tolerance = 0.002f;
     
-    public float applySimplifyAfterPoints = 20.0f;
+    public float applySimplifyAfterPoints = 400.0f;
 
-    public bool allowMultiTouch = true;
 }
