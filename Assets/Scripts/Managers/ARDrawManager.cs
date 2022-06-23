@@ -26,6 +26,8 @@ public class ARDrawManager : Singleton<ARDrawManager>
     [SerializeField]
     private Camera arCamera = null;
 
+
+
     [SerializeField]
     GameObject m_Prefab;
     public GameObject prefab
@@ -55,6 +57,11 @@ public class ARDrawManager : Singleton<ARDrawManager>
 #else
         DrawOnMouse();
 #endif
+    }
+
+    public void setLineMaterial(LineSettings l)
+    {
+        lineSettings = l;
     }
 
     public bool drawing(){
