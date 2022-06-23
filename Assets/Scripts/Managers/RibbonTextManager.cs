@@ -30,7 +30,6 @@ public class RibbonTextManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
     }
 
     private void OnEnable()
@@ -65,6 +64,7 @@ public class RibbonTextManager : MonoBehaviour
 
     public void onTextChange(string txt)
     {
+        //textInputArea.caretPosition = textInputArea.text.Length;
         //txt = Regex.Replace(txt, @"\n|\r", "");
         //textInputArea.SetTextWithoutNotify(txt);
         charLimitInput.text = $"{txt.Length}/{charLimit}";
