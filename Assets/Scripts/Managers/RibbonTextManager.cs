@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using UnityEngine;
 
 public class RibbonTextManager : MonoBehaviour
@@ -10,6 +11,7 @@ public class RibbonTextManager : MonoBehaviour
     public TMPro.TMP_InputField textInputArea;
 
     private string defaultText = "";
+    private string charLimit;
     const string WHEELTRAILS_TXT = "WheeltrailsText";
     
     // Start is called before the first frame update
@@ -19,8 +21,8 @@ public class RibbonTextManager : MonoBehaviour
 
     public void Init()
     {
+        charLimit = $"{textInputArea.characterLimit}";
         defaultText = PlayerPrefs.GetString(WHEELTRAILS_TXT, "Wheeltrails");
-        ARDebugManager.Instance.LogInfo(defaultText);
         textInputArea.text = defaultText;
         fillTextSpace();
     }
@@ -36,16 +38,11 @@ public class RibbonTextManager : MonoBehaviour
         charLimitInput.text = $"{textInputArea.text.Length}/{textInputArea.characterLimit}";
     }
 
-    public void Show()
-    {
-        gameObject.SetActive(true);
-    }
-
     public void fillTextSpace()
-    {
-        
+    {  
         int limit = textInputArea.characterLimit;
-        string currentText = textInputArea.text;
+        string currentText = Regex.Replace(textInputArea.text, @"\t|\n|\r", "").Trim();
+        //textInputArea.text = currentText;
         float s = limit / textInputArea.text.Length;
         int dup = Mathf.FloorToInt(s);
         ARDebugManager.Instance.LogInfo($"{dup}");
@@ -53,23 +50,24 @@ public class RibbonTextManager : MonoBehaviour
         {
             string paddedText = "";
             for (int i = 0; i < dup; i++) {
-                paddedText = $"{paddedText.Trim()} {currentText.Trim()}".Trim();
+                paddedText = $"{paddedText} {currentText}".Trim();
             }
-            container.text = paddedText;
+            container.text = paddedText.Trim();
             
         }
         else
         {
-            container.text = textInputArea.text;
+            container.text = textInputArea.text.Trim();
         }
+        ARDebugManager.Instance.LogInfo(currentText);
         PlayerPrefs.SetString(WHEELTRAILS_TXT, currentText);
-        ARDebugManager.Instance.LogInfo(PlayerPrefs.GetString(WHEELTRAILS_TXT, "NO?"));
     }
 
     public void onTextChange(string txt)
     {
-        charLimitInput.text = $"{txt.Length}/{textInputArea.characterLimit}";
+        //txt = Regex.Replace(txt, @"\n|\r", "");
+        //textInputArea.SetTextWithoutNotify(txt);
+        charLimitInput.text = $"{txt.Length}/{charLimit}";
     }
-
 
 }
