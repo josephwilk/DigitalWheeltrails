@@ -16,7 +16,11 @@ MonoBehaviour:
   m_Data:
     m_SerializedData: []
   m_GUID: bae738591fe615544af3578277e66caf
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: fbb3e01ebad56479eb49bc756d6c4d59
+    m_Address: Assets/LineSettings/Materials/TrailText.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 1d70c1a36235d224ba8e8dda63b565b1, type: 2}
   m_SchemaSet:
