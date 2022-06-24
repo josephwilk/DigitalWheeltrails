@@ -467,15 +467,15 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Wheeltrails is an excuse to dance in public spaces, exploring the wheelchair
+  m_text: "Wheeltrails is an excuse to dance in public spaces, exploring the wheelchair's
     movement as a creative body and its interaction with the design of the physical
     world. Providing a creative tool to explore and express how the physical environment
     hinders and enables the joy of wheelchairs in motion.  \n\nThe trails created
     are digital street art attached to physical spaces, which provides a way without
     permission to respond creatively to the barriers society creates for wheeled
-    motion. \n\nWheeltrails is a project created, designed & implemented by artist
-    Joseph Wilk. \n\nIt has been made possible by support from Unlimited, SouthBank
-    Centre and The Arts Council England"
+    motion. \n\nWheeltrails is a project created, designed, implemented & lived by
+    artist Joseph Wilk. \n\nIt has been made possible by support from Unlimited,
+    SouthBank Centre and The Arts Council England"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 801223ab657744a85b0e2b5ac5c1a041, type: 2}
   m_sharedMaterial: {fileID: -7188733246301788310, guid: 801223ab657744a85b0e2b5ac5c1a041,
