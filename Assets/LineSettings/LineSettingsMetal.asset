@@ -10,18 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1131f67916ff64a90a275342369903b3, type: 3}
-  m_Name: LineSettingsPlain
+  m_Name: LineSettingsMetal
   m_EditorClassIdentifier: 
   lineTagName: Line
   startColor: {r: 1, g: 0, b: 0, a: 1}
   endColor: {r: 1, g: 1, b: 1, a: 0}
-  startWidth: 0.03
+  startWidth: 0.035
   endWidth: 0.03
   distanceFromCamera: 0.6
-  defaultMaterial: {fileID: 10301, guid: 0000000000000000f000000000000000, type: 0}
+  defaultMaterial: {fileID: 2100000, guid: c2809691a61fc4a43b6483eee535d786, type: 2}
   cornerVertices: 140
   endCapVertices: 5
   minDistanceBeforeNewPoint: 0.002
+  textureMode: 2
+  lightData: 1
+  lightProb: 1
+  shadow: 0
   allowSmoothing: 0
   dampen: 0.035
   allowSimplification: 1

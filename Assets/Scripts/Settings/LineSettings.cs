@@ -24,6 +24,14 @@ public class LineSettings : ScriptableObject
     [Range(0, 1.0f)]
     public float minDistanceBeforeNewPoint = 0.002f;
 
+    public LineTextureMode textureMode = LineTextureMode.Tile;
+
+    [Header("Lights")]
+
+    public bool lightData = false;
+    public UnityEngine.Rendering.LightProbeUsage lightProb = UnityEngine.Rendering.LightProbeUsage.Off;
+    public UnityEngine.Rendering.ShadowCastingMode shadow = UnityEngine.Rendering.ShadowCastingMode.Off;
+
     [Header("Smoothing Options")]
     public bool allowSmoothing = true;
 
