@@ -17,11 +17,15 @@ MonoBehaviour:
   endColor: {r: 1, g: 0.031644695, b: 0, a: 1}
   startWidth: 0.03
   endWidth: 0.03
-  distanceFromCamera: 0.6
+  distanceFromCamera: 0.8
   defaultMaterial: {fileID: 2100000, guid: fbb3e01ebad56479eb49bc756d6c4d59, type: 2}
   cornerVertices: 140
   endCapVertices: 0
   minDistanceBeforeNewPoint: 0.002
+  textureMode: 1
+  lightData: 0
+  lightProb: 0
+  shadow: 0
   allowSmoothing: 0
   dampen: 0.035
   allowSimplification: 1
