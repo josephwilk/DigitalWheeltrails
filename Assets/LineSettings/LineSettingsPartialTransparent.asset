@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1131f67916ff64a90a275342369903b3, type: 3}
-  m_Name: LineSettingsTransparent
+  m_Name: LineSettingsPartialTransparent
   m_EditorClassIdentifier: 
   lineTagName: Line
-  startColor: {r: 1, g: 1, b: 1, a: 1}
-  endColor: {r: 1, g: 1, b: 1, a: 1}
+  startColor: {r: 1, g: 0, b: 0, a: 1}
+  endColor: {r: 0.7169812, g: 0.29423285, b: 0.29423285, a: 1}
   startWidth: 0.03
   endWidth: 0.03
   distanceFromCamera: 0.6
-  defaultMaterial: {fileID: 2100000, guid: 4daf8d90b9357498ca033210ccbfba88, type: 2}
-  extraMaterial: {fileID: 0}
+  defaultMaterial: {fileID: 2100000, guid: 8b3ee5d1a47414892a890ef099d74c48, type: 2}
+  extraMaterial: {fileID: 2100000, guid: 4daf8d90b9357498ca033210ccbfba88, type: 2}
   cornerVertices: 140
   endCapVertices: 5
   minDistanceBeforeNewPoint: 0.002

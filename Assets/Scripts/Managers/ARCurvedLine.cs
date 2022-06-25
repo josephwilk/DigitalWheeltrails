@@ -156,9 +156,18 @@ public class ARCurvedLine
 
         goLineRenderer.startColor = settings.startColor;
         goLineRenderer.endColor = settings.endColor;
-
-
-        goLineRenderer.material = settings.defaultMaterial;
+        
+        if(settings.extraMaterial != null)
+        {
+            Material[] m = new Material[2];
+            m.SetValue(settings.defaultMaterial, 0);
+            m.SetValue(settings.extraMaterial, 1);
+            goLineRenderer.materials = m;
+        }
+        else
+        {
+            goLineRenderer.material = settings.defaultMaterial;
+        }
         goLineRenderer.useWorldSpace = true;
         goLineRenderer.positionCount = positionCount;
 

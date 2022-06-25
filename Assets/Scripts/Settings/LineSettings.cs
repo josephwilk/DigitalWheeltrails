@@ -16,6 +16,7 @@ public class LineSettings : ScriptableObject
     public float distanceFromCamera = 0.6f;
 
     public Material defaultMaterial;
+    public Material extraMaterial = null;
 
     public int cornerVertices = 140;
 
