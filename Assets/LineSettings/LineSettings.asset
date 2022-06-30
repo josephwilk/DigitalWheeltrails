@@ -27,7 +27,7 @@ MonoBehaviour:
   lightData: 0
   lightProb: 0
   shadow: 0
-  allowSmoothing: 0
+  allowSmoothing: 1
   dampen: 0.035
   allowSimplification: 0
   tolerance: 0.002

@@ -18,15 +18,15 @@ MonoBehaviour:
   startWidth: 0.03
   endWidth: 0.03
   distanceFromCamera: 0.6
-  defaultMaterial: {fileID: 2100000, guid: b8e554ed6d67c461c8f473c380350a89, type: 2}
-  extraMaterial: {fileID: 0}
+  defaultMaterial: {fileID: 2100000, guid: 0e190abc1547f4f15a412bc1813e7c0a, type: 2}
+  extraMaterial: {fileID: 2100000, guid: 4daf8d90b9357498ca033210ccbfba88, type: 2}
   cornerVertices: 140
   endCapVertices: 5
   minDistanceBeforeNewPoint: 0.002
-  textureMode: 3
+  textureMode: 1
   lightData: 1
-  lightProb: 1
-  shadow: 1
+  lightProb: 0
+  shadow: 0
   allowSmoothing: 0
   dampen: 0.035
   allowSimplification: 1

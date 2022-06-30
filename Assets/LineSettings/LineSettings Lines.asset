@@ -23,7 +23,7 @@ MonoBehaviour:
   cornerVertices: 140
   endCapVertices: 5
   minDistanceBeforeNewPoint: 0.002
-  textureMode: 2
+  textureMode: 1
   lightData: 1
   lightProb: 1
   shadow: 0
