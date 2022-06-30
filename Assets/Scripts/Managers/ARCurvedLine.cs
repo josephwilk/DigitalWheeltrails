@@ -46,6 +46,8 @@ public class ARCurvedLine
 
     public void AddPoint(Vector3 position)
     {
+        if (LineRenderer == null) {return;}
+
         bool firstPoint = (prevPointDistance == Vector3.zero);
         if (firstPoint)
         {
