@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1131f67916ff64a90a275342369903b3, type: 3}
+  m_Name: LineSettingsRibbonFire
+  m_EditorClassIdentifier: 
+  lineTagName: Line
+  startColor: {r: 1, g: 1, b: 1, a: 1}
+  endColor: {r: 1, g: 1, b: 1, a: 1}
+  startWidth: 0.03
+  endWidth: 0.03
+  distanceFromCamera: 0.6
+  defaultMaterial: {fileID: 2100000, guid: 02771c18b3d8d4bf7a2cb0e3b7524ee1, type: 2}
+  extraMaterial: {fileID: 0}
+  cornerVertices: 140
+  endCapVertices: 5
+  minDistanceBeforeNewPoint: 0.002
+  textureMode: 0
+  lightData: 1
+  lightProb: 1
+  shadow: 1
+  allowSmoothing: 0
+  dampen: 0.035
+  allowSimplification: 1
+  tolerance: 0.002
+  applySimplifyAfterPoints: 400

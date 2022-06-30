@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1131f67916ff64a90a275342369903b3, type: 3}
-  m_Name: LineSettingsGlobe
+  m_Name: LineSettingsCutout
   m_EditorClassIdentifier: 
   lineTagName: Line
   startColor: {r: 1, g: 1, b: 1, a: 1}
@@ -18,12 +18,12 @@ MonoBehaviour:
   startWidth: 0.03
   endWidth: 0.03
   distanceFromCamera: 0.6
-  defaultMaterial: {fileID: 2100000, guid: 0eb2220936ba5d0499ec8e8d6c5cc34f, type: 2}
-  extraMaterial: {fileID: 0}
+  defaultMaterial: {fileID: 2100000, guid: 4daf8d90b9357498ca033210ccbfba88, type: 2}
+  extraMaterial: {fileID: 2100000, guid: 0e190abc1547f4f15a412bc1813e7c0a, type: 2}
   cornerVertices: 140
   endCapVertices: 5
   minDistanceBeforeNewPoint: 0.002
-  textureMode: 2
+  textureMode: 1
   lightData: 1
   lightProb: 1
   shadow: 1
