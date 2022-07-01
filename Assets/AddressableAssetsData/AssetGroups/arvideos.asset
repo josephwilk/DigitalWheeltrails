@@ -16,7 +16,15 @@ MonoBehaviour:
   m_Data:
     m_SerializedData: []
   m_GUID: 4ce1c0df7a34948bebdd61be7cedb5c9
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: e8bfe79e7ce2c4f5f80f2e98849d4992
+    m_Address: Assets/Videos/findaplane.webm
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: ab13a5b69b34a422a960cfa16e5943fd
+    m_Address: Assets/Videos/taptoplace.webm
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 1d70c1a36235d224ba8e8dda63b565b1, type: 2}
   m_SchemaSet:

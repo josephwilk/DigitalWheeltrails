@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: arvideos_ContentUpdateGroupSchema
   m_EditorClassIdentifier: 
   m_Group: {fileID: 11400000, guid: 45622357354114ebc9e8d89c7a1065df, type: 2}
-  m_StaticContent: 0
+  m_StaticContent: 1
