@@ -7,9 +7,6 @@ using DilmerGames.UI;
 public class RibbonModeManager : MonoBehaviour
 {
 
-    [SerializeField]
-    private LineSettings[] ribbonModes = null;
-
     private UIPane gui;
 
     [SerializeField]
