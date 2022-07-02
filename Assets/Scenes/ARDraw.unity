@@ -4844,7 +4844,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 339ab985cc7cc4cbc90ba8ef4e242217, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ribbonModes: []
   drawManager: {fileID: 1405077183}
 --- !u!1 &1016344565
 GameObject:
