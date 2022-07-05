@@ -29,13 +29,13 @@ public class ScreenCapture : MonoBehaviour
     public void Share()
     {
         NativeShare sharing = new NativeShare();
-        sharing.AddFile(screenShot, "wheeltrails.png");
+        sharing.AddFile(screenShot, "wheeltrails.jpg");
         sharing.Share();
     }
 
     public void Download()
     {
-        NativeGallery.Permission permission = NativeGallery.SaveImageToGallery(screenShot, "Wheeltrails", "wheeltrails.png",
+        NativeGallery.Permission permission = NativeGallery.SaveImageToGallery(screenShot, "Wheeltrails", "wheeltrails.jpg",
           (success, path) => Debug.Log("Media save result: " + success + " " + path));
 
         Debug.Log("Permission result: " + permission);
