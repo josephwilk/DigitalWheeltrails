@@ -219,9 +219,6 @@ public class ARMeshLine
 		var dirCount = 0;
 		var forward = Vector3.zero;
 
-
-		Debug.Log("pos->" + _positions[index].ToString());
-
 		// If not first index
 		if (index > 0)
 		{
