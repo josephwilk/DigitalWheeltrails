@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityMeshSimplifier;
 
 public class ARMeshLine
 {
@@ -8,11 +9,11 @@ public class ARMeshLine
 	private List<Vector3> _positions;
 	private int positionCount;
 
-	private int _sides = 2;
-	private float _radiusOne = 0.03f;
+	private int _sides = 3;
+	private float _radiusOne = 0.02f;
 	private float _radiusTwo = 0.06f;
 	private bool _useWorldSpace = true;
-	private bool _useTwoRadii = true;
+	private bool _useTwoRadii = false;
 
 	private Vector3[] _vertices;
 	
@@ -43,10 +44,12 @@ public class ARMeshLine
 		_mesh = new Mesh();
 		_meshFilter.mesh = _mesh;
 		_meshRenderer.material = settings.defaultMaterial;
-		//_radiusOne = settings.startWidth;
-		//_radiusTwo = settings.endWidth;
+		_radiusOne = settings.startWidth;
+		_radiusTwo = settings.endWidth;
 		container = anchorContainer;
 		_positions = new List<Vector3>();
+		_positions.Add(position);
+		_positions.Add(position);
 
 	}
 
@@ -108,6 +111,42 @@ public class ARMeshLine
 			if (positionCount % settings.applySimplifyAfterPoints == 0 &&
 				settings.allowSimplification)
 			{
+				//float quality = 0.8f;
+    //            var meshSimplifier = new UnityMeshSimplifier.MeshSimplifier
+    //            {
+    //                Vertices = _mesh.vertices
+    //            };
+    //            for (int i = 0; i < _mesh.subMeshCount; i++)
+				//{
+				//	meshSimplifier.AddSubMeshTriangles(_mesh.GetTriangles(i));
+				//}
+
+				//// This is where the magic happens, lets simplify!
+				//meshSimplifier.SimplifyMeshLossless();
+
+
+				//int oldCount = _mesh.vertexCount;
+
+				//var newMesh = new Mesh();
+				//newMesh.subMeshCount = meshSimplifier.SubMeshCount;
+				//newMesh.vertices = meshSimplifier.Vertices;
+
+				//for (int i = 0; i < meshSimplifier.SubMeshCount; i++)
+				//{
+				//	newMesh.SetTriangles(meshSimplifier.GetSubMeshTriangles(i), 0);
+				//}
+
+				//_meshFilter.mesh = newMesh;
+				//_mesh = newMesh;
+				//_positions = new List<Vector3>(_mesh.vertices);
+
+				
+
+				//positionCount = _positions.Count;
+
+				//Debug.Log("Before:[" + oldCount + "] After: [" + _mesh.vertexCount +"]");
+
+
 				_mesh.Optimize();
 				
 			}
@@ -162,7 +201,6 @@ public class ARMeshLine
 		_mesh.vertices = _vertices;
 		_mesh.RecalculateNormals();
 		_mesh.RecalculateBounds();
-
 		_meshFilter.mesh = _mesh;
 	}
 
