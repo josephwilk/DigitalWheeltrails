@@ -162,13 +162,14 @@ public class ARDrawManager : Singleton<ARDrawManager>
             }
             else
             {
-                Lines[0].AddPoint(leftWorldPosition);
-                Lines[1].AddPoint(rightWorldPosition);
-
                 if (meshMode)
                 {
                     MeshLines[0].AddPoint(leftWorldPosition);
                     MeshLines[1].AddPoint(rightWorldPosition);
+                }
+                else {
+                    Lines[0].AddPoint(leftWorldPosition);
+                    Lines[1].AddPoint(rightWorldPosition);
                 }
 
             }
@@ -235,13 +236,15 @@ public class ARDrawManager : Singleton<ARDrawManager>
             }
             else 
             {
-                Lines[0].AddPoint(leftPos);
-                Lines[1].AddPoint(rightPos);
-
                 if (meshMode)
                 {
                     MeshLines[0].AddPoint(leftPos);
                     MeshLines[1].AddPoint(rightPos);
+                }
+                else
+                {
+                    Lines[0].AddPoint(leftPos);
+                    Lines[1].AddPoint(rightPos);
                 }
             }
         }
