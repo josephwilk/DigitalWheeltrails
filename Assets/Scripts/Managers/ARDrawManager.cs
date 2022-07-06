@@ -221,7 +221,6 @@ public class ARDrawManager : Singleton<ARDrawManager>
         GameObject[] lines = GetAllLinesInScene();
         foreach (GameObject currentLine in lines)
         {
-            LineRenderer line = currentLine.GetComponent<LineRenderer>();
             Destroy(currentLine);
         }
     }
