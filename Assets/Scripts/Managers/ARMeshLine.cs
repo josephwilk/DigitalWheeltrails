@@ -6,13 +6,16 @@ public class ARMeshLine
 {
 
 	private List<Vector3> _positions;
-	private int _sides = 3;
+	private int positionCount;
+
+	private int _sides = 2;
 	private float _radiusOne = 0.03f;
-	private float _radiusTwo = 0.03f;
+	private float _radiusTwo = 0.06f;
 	private bool _useWorldSpace = true;
-	private bool _useTwoRadii = false;
+	private bool _useTwoRadii = true;
 
 	private Vector3[] _vertices;
+	
 	private Mesh _mesh;
 	private MeshFilter _meshFilter;
 	private MeshRenderer _meshRenderer;
@@ -40,8 +43,8 @@ public class ARMeshLine
 		_mesh = new Mesh();
 		_meshFilter.mesh = _mesh;
 		_meshRenderer.material = settings.defaultMaterial;
-		_radiusOne = settings.startWidth;
-		_radiusTwo = settings.endWidth;
+		//_radiusOne = settings.startWidth;
+		//_radiusTwo = settings.endWidth;
 		container = anchorContainer;
 		_positions = new List<Vector3>();
 
@@ -59,7 +62,6 @@ public class ARMeshLine
 
 	void Update()
 	{
-		//GenerateMesh();
 	}
 
 	private void OnValidate()
@@ -96,11 +98,22 @@ public class ARMeshLine
 				smoothedPos.z = Mathf.SmoothDamp(prevPointDistance.z, position.z, ref zVelocity, smoothTime);
 			}
 
-			//_mesh.Optimize();
+			
 
 			_positions.Add(smoothedPos);
+			positionCount += 1;
 			prevPointDistance = smoothedPos;
+
+			// applies simplification if reminder is 0
+			if (positionCount % settings.applySimplifyAfterPoints == 0 &&
+				settings.allowSimplification)
+			{
+				_mesh.Optimize();
+				
+			}
+		
 			GenerateMesh();
+
 		}
 	}
 
