@@ -26,6 +26,8 @@ public class ARDrawManager : Singleton<ARDrawManager>
     [SerializeField]
     private Camera arCamera = null;
 
+    [SerializeField]
+    public bool meshMode { get; set; } = false;
 
 
     [SerializeField]
@@ -36,12 +38,12 @@ public class ARDrawManager : Singleton<ARDrawManager>
         set => m_Prefab = value;
     }
 
-
     public static event Action Ontouched;
 
     private List<ARAnchor> anchors = new List<ARAnchor>();
 
     private Dictionary<int, ARCurvedLine> Lines = new Dictionary<int, ARCurvedLine>();
+    private Dictionary<int, ARMeshLine> MeshLines = new Dictionary<int, ARMeshLine>();
 
     private bool CanDraw { get; set; }
 
@@ -120,15 +122,15 @@ public class ARDrawManager : Singleton<ARDrawManager>
 
         if (drawActive)
         {
-                Vector3 leftPos = new Vector3((Screen.width / 2) - distanceBetweenWheels,
-                                      (Screen.height / 2)        - 400,
-                                      lineSettings.distanceFromCamera);
-                Vector3 rightPos = new Vector3((Screen.width / 2) + distanceBetweenWheels,
-                                          (Screen.height / 2)     - 400,
-                                          lineSettings.distanceFromCamera);
+            Vector3 leftPos = new Vector3((Screen.width / 2) - distanceBetweenWheels,
+                                    (Screen.height / 2)        - 400,
+                                    lineSettings.distanceFromCamera);
+            Vector3 rightPos = new Vector3((Screen.width / 2) + distanceBetweenWheels,
+                                        (Screen.height / 2)     - 400,
+                                        lineSettings.distanceFromCamera);
 
-                Vector3 leftWorldPosition = arCamera.ScreenToWorldPoint(leftPos);
-                Vector3 rightWorldPosition = arCamera.ScreenToWorldPoint(rightPos);
+            Vector3 leftWorldPosition = arCamera.ScreenToWorldPoint(leftPos);
+            Vector3 rightWorldPosition = arCamera.ScreenToWorldPoint(rightPos);
 
 
             if (initDraw) {
@@ -147,12 +149,28 @@ public class ARDrawManager : Singleton<ARDrawManager>
                 Lines.Add(1, rightLine);
                 rightLine.AddNewLineRenderer(transform, rightAnchor, rightWorldPosition);
 
-                ARDebugManager.Instance.LogInfo("Setting anchors");
+                if (meshMode)
+                {
+                    ARMeshLine l = new ARMeshLine(lineSettings);
+                    ARMeshLine r = new ARMeshLine(lineSettings);
+                    MeshLines.Add(0, l);
+                    MeshLines.Add(1, r);
+                    l.AddNewLineRenderer(transform, leftAnchor, leftWorldPosition);
+                    r.AddNewLineRenderer(transform, rightAnchor, rightWorldPosition);
+                }
+
             }
             else
             {
                 Lines[0].AddPoint(leftWorldPosition);
                 Lines[1].AddPoint(rightWorldPosition);
+
+                if (meshMode)
+                {
+                    MeshLines[0].AddPoint(leftWorldPosition);
+                    MeshLines[1].AddPoint(rightWorldPosition);
+                }
+
             }
 
         }
@@ -162,6 +180,12 @@ public class ARDrawManager : Singleton<ARDrawManager>
             {
                 Lines.Remove(0);
                 Lines.Remove(1);
+
+                if (meshMode)
+                {
+                    MeshLines.Remove(0);
+                    MeshLines.Remove(1);
+                }
             }
         }
     }
@@ -195,11 +219,30 @@ public class ARDrawManager : Singleton<ARDrawManager>
                 Lines.Add(1, line2);
                 line1.AddNewLineRenderer(transform, null, leftPos);
                 line2.AddNewLineRenderer(transform, null, rightPos);
+
+
+                if (meshMode)
+                {
+                    ARMeshLine l = new ARMeshLine(lineSettings);
+                    ARMeshLine r = new ARMeshLine(lineSettings);
+
+                    MeshLines.Add(0, l);
+                    MeshLines.Add(1, r);
+                    l.AddNewLineRenderer(transform, null, leftPos);
+                    r.AddNewLineRenderer(transform, null, rightPos);
+                }
+
             }
             else 
             {
                 Lines[0].AddPoint(leftPos);
                 Lines[1].AddPoint(rightPos);
+
+                if (meshMode)
+                {
+                    MeshLines[0].AddPoint(leftPos);
+                    MeshLines[1].AddPoint(rightPos);
+                }
             }
         }
         else if(Input.GetMouseButtonUp(0))
@@ -207,6 +250,12 @@ public class ARDrawManager : Singleton<ARDrawManager>
             flipDraw();
             Lines.Remove(0);
             Lines.Remove(1);
+
+            if (meshMode)
+            {
+                MeshLines.Remove(0);
+                MeshLines.Remove(1);
+            }
         }
     }
 
