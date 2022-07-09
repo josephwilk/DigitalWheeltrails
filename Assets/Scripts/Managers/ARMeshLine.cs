@@ -13,7 +13,7 @@ public class ARMeshLine
 	private float _radiusOne = 0.02f;
 	private float _radiusTwo = 0.06f;
 	private bool _useWorldSpace = true;
-	private bool _useTwoRadii = false;
+	private bool _useTwoRadii = true;
 
 	private Vector3[] _vertices;
 	
