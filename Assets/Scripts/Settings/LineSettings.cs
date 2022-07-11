@@ -4,7 +4,9 @@ using UnityEngine;
 public class LineSettings : ScriptableObject 
 {
     public string lineTagName = "Line";
-    
+
+    public bool meshLine = false;
+
     public Color startColor = Color.white;
 
     public Color endColor = Color.white;
