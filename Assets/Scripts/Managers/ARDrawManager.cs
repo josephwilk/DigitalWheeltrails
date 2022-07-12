@@ -178,8 +178,8 @@ public class ARDrawManager : Singleton<ARDrawManager>
                     wheeltrailsManager.AddPoint(leftWorldPosition);
                 }
               
-                    Lines[0].AddPoint(leftWorldPosition);
-                    Lines[1].AddPoint(rightWorldPosition);
+                Lines[0].AddPoint(leftWorldPosition);
+                Lines[1].AddPoint(rightWorldPosition);
             }
 
         }
@@ -203,7 +203,9 @@ public class ARDrawManager : Singleton<ARDrawManager>
         if(!CanDraw) return;
 
         Vector3 leftPos = arCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x-distanceBetweenWheels,
-                                                                        Input.mousePosition.y-400, lineSettings.distanceFromCamera));
+                                                                  Input.mousePosition.y-400,
+                                                                  lineSettings.distanceFromCamera));
+
         Vector3 rightPos = arCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x+distanceBetweenWheels,
                                                                         Input.mousePosition.y-400, lineSettings.distanceFromCamera));
 
