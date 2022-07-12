@@ -6,6 +6,7 @@ public class LineSettings : ScriptableObject
     public string lineTagName = "Line";
 
     public bool meshLine = false;
+    public bool lineOff = false;
 
     public Color startColor = Color.white;
 
