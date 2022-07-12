@@ -166,8 +166,8 @@ public class ARDrawManager : Singleton<ARDrawManager>
                     //ARMeshLine r = new ARMeshLine(lineSettings);
                     //MeshLines.Add(0, l);
                     //MeshLines.Add(1, r);
-                    //l.AddNewLineRenderer(transform, leftAnchor, leftWorldPosition);
-                    //r.AddNewLineRenderer(transform, rightAnchor, rightWorldPosition);
+                    //l.AddNewMeshRenderer(transform, leftAnchor, leftWorldPosition);
+                    //r.AddNewMeshRenderer(transform, rightAnchor, rightWorldPosition);
                 }
 
             }
