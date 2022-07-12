@@ -175,7 +175,7 @@ public class ARDrawManager : Singleton<ARDrawManager>
             {
                 if (lineSettings.meshLine)
                 {
-                    wheeltrailsManager.AddPoint(leftPos);
+                    wheeltrailsManager.AddPoint(leftWorldPosition);
                 }
               
                     Lines[0].AddPoint(leftWorldPosition);
