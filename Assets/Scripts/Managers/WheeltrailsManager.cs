@@ -40,8 +40,14 @@ public class WheeltrailsManager : MonoBehaviour
 		Destroy(trailMesh);
 	}
 
+	public void startPoint(Vector3 point)
+    {
+		_positions.Add(point);
+		_positions.Add(point);
+	}
 
-    public void AddPoint(Vector3 point)
+
+	public void AddPoint(Vector3 point)
     {
 		if (left == null)
 		{

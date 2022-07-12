@@ -162,6 +162,7 @@ public class ARDrawManager : Singleton<ARDrawManager>
                     wheeltrailsManager.leftContainer = leftAnchor;
                     wheeltrailsManager.rightContainer = rightAnchor;
 
+                    wheeltrailsManager.startPoint(leftWorldPosition);
 
                     //ARMeshLine l = new ARMeshLine(lineSettings);
                     //ARMeshLine r = new ARMeshLine(lineSettings);
