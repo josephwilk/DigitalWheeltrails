@@ -43,6 +43,7 @@ public class ARDrawManager : Singleton<ARDrawManager>
     private List<ARAnchor> anchors = new List<ARAnchor>();
 
     private Dictionary<int, ARCurvedLine> Lines = new Dictionary<int, ARCurvedLine>();
+    private Dictionary<int, ARMeshLine> MeshLines = new Dictionary<int, ARMeshLine>();
 
     private WheeltrailsManager wheeltrailsManager = null;
 

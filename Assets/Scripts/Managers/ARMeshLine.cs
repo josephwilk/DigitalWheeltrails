@@ -8,11 +8,18 @@ public class ARMeshLine
 	public MeshFilter _meshFilter;
 	public MeshRenderer _meshRenderer;
 	private LineSettings settings;
+	//public Mesh mesh;
 
 	public ARMeshLine(LineSettings l)
 	{
 		this.settings = l;
+		//this.mesh = new Mesh();
 	}
+
+	public void addPoint(Vector3 point)
+    {
+
+    }
 
 
     public void AddNewMeshRenderer(Transform parent, GameObject anchorContainer, Mesh mesh)
