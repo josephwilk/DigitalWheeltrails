@@ -71,15 +71,13 @@ public class ARMeshLine
 			positionCount += 1;
 			prevPointDistance = smoothedPos;
 
-			GenerateMesh();
-			_meshFilter.mesh = trailMesh;
-
 			// applies simplification if reminder is 0
 			if (positionCount % settings.applySimplifyAfterPoints == 0 &&
 				settings.allowSimplification)
 			{
 				trailMesh.Optimize();
 			}
+			GenerateMesh();
 
 		}
 	}
@@ -128,6 +126,7 @@ public class ARMeshLine
 		trailMesh.vertices = _vertices;
 		trailMesh.RecalculateNormals();
 		trailMesh.RecalculateBounds();
+		_meshFilter.mesh = trailMesh;
 	}
 
 	private Vector2[] GenerateUVs()
