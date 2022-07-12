@@ -21,14 +21,10 @@ public class ARDrawManager : Singleton<ARDrawManager>
     private UnityEvent OnDraw = null;
 
     [SerializeField]
-    private ARAnchorManager anchorManager = null;
-
-    [SerializeField]
     private Camera arCamera = null;
 
     [SerializeField]
     public bool meshMode { get; set; } = false;
-
 
     [SerializeField]
     GameObject m_Prefab;
