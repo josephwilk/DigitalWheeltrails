@@ -252,7 +252,6 @@ public class WheeltrailsManager : MonoBehaviour
 				indices[currentIndicesIndex++] = (side == _sides - 1) ? (vertIndex - (_sides - 1)) : (vertIndex + 1);
 				indices[currentIndicesIndex++] = vertIndex;
 
-
 				// Triangle two
 				indices[currentIndicesIndex++] = (side == _sides - 1) ? (prevVertIndex - (_sides - 1)) : (prevVertIndex + 1);
 				indices[currentIndicesIndex++] = (side == _sides - 1) ? (vertIndex - (_sides - 1)) : (vertIndex + 1);
@@ -293,13 +292,8 @@ public class WheeltrailsManager : MonoBehaviour
 
 		var t = (Mathf.Sin(index*0.15f)*_positions.Count/2 + _positions.Count/2) / (_positions.Count - 1f);
 
-		
-
 		var radius = _useTwoRadii ? Mathf.Lerp(_radiusOne, _radiusTwo, t) : _radiusOne;
 
-		//radius = _useTwoRadii ? Mathf.Lerp(_radiusOne, _radiusTwo, t) : _radiusOne;
-
- 
 		for (int i = 0; i < _sides; i++)
 		{
 
