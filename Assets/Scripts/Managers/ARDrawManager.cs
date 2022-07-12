@@ -45,8 +45,6 @@ public class ARDrawManager : Singleton<ARDrawManager>
     private Dictionary<int, ARCurvedLine> Lines = new Dictionary<int, ARCurvedLine>();
     private Dictionary<int, ARMeshLine> MeshLines = new Dictionary<int, ARMeshLine>();
 
-    private WheeltrailsManager wheeltrailsManager = null;
-
     private bool CanDraw { get; set; }
 
     private bool drawActive { get; set; }
@@ -134,7 +132,6 @@ public class ARDrawManager : Singleton<ARDrawManager>
             Vector3 leftWorldPosition = arCamera.ScreenToWorldPoint(leftPos);
             Vector3 rightWorldPosition = arCamera.ScreenToWorldPoint(rightPos);
 
-
             if (initDraw) {
                 OnDraw?.Invoke();
                 initDraw = false;
@@ -153,23 +150,12 @@ public class ARDrawManager : Singleton<ARDrawManager>
 
                 if (lineSettings.meshLine)
                 {
-                    GameObject wheeltrails = new GameObject($"Wheeltrail");
-                    wheeltrails.transform.parent = transform;
-                    wheeltrails.tag = lineSettings.lineTagName;
-                    wheeltrailsManager = wheeltrails.AddComponent<WheeltrailsManager>();
-                    wheeltrailsManager.settings = lineSettings;
-                    wheeltrailsManager.parent = wheeltrails.transform;
-                    wheeltrailsManager.leftContainer = leftAnchor;
-                    wheeltrailsManager.rightContainer = rightAnchor;
-
-                    wheeltrailsManager.startPoint(leftWorldPosition);
-
-                    //ARMeshLine l = new ARMeshLine(lineSettings);
-                    //ARMeshLine r = new ARMeshLine(lineSettings);
-                    //MeshLines.Add(0, l);
-                    //MeshLines.Add(1, r);
-                    //l.AddNewMeshRenderer(transform, leftAnchor, leftWorldPosition);
-                    //r.AddNewMeshRenderer(transform, rightAnchor, rightWorldPosition);
+                    ARMeshLine l = new ARMeshLine(lineSettings);
+                    ARMeshLine r = new ARMeshLine(lineSettings);
+                    MeshLines.Add(0, l);
+                    MeshLines.Add(1, r);
+                    l.AddNewMeshRenderer(transform, leftAnchor, leftWorldPosition);
+                    r.AddNewMeshRenderer(transform, rightAnchor, rightWorldPosition);
                 }
 
             }
@@ -177,9 +163,10 @@ public class ARDrawManager : Singleton<ARDrawManager>
             {
                 if (lineSettings.meshLine)
                 {
-                    wheeltrailsManager.AddPoint(leftWorldPosition);
+                    MeshLines[0].AddPoint(leftWorldPosition);
+                    MeshLines[1].AddPoint(rightWorldPosition);
                 }
-              
+
                 Lines[0].AddPoint(leftWorldPosition);
                 Lines[1].AddPoint(rightWorldPosition);
             }
@@ -194,7 +181,8 @@ public class ARDrawManager : Singleton<ARDrawManager>
 
                 if (lineSettings.meshLine)
                 {
-                    wheeltrailsManager = null;
+                    MeshLines.Remove(0);
+                    MeshLines.Remove(1);
                 }
             }
         }
@@ -220,7 +208,6 @@ public class ARDrawManager : Singleton<ARDrawManager>
         if (Input.GetMouseButton(0))
         {
             OnDraw?.Invoke();
-           
 
             if (Lines.Keys.Count == 0)
             {
@@ -235,12 +222,12 @@ public class ARDrawManager : Singleton<ARDrawManager>
 
                 if (lineSettings.meshLine)
                 {
-                    GameObject wheeltrails = new GameObject($"Wheeltrail");
-                    wheeltrails.transform.parent = transform;
-                    wheeltrails.tag = lineSettings.lineTagName;
-                    wheeltrailsManager = wheeltrails.AddComponent<WheeltrailsManager>();
-                    wheeltrailsManager.settings = lineSettings;
-                    wheeltrailsManager.parent = wheeltrails.transform;
+                    ARMeshLine l = new ARMeshLine(lineSettings);
+                    ARMeshLine r = new ARMeshLine(lineSettings);
+                    MeshLines.Add(0, l);
+                    MeshLines.Add(1, r);
+                    l.AddNewMeshRenderer(transform, null, leftPos);
+                    r.AddNewMeshRenderer(transform, null, rightPos);
                 }
 
             }
@@ -248,9 +235,10 @@ public class ARDrawManager : Singleton<ARDrawManager>
             {
                 if (lineSettings.meshLine)
                 {
-                    wheeltrailsManager.AddPoint(leftPos);
+                    MeshLines[0].AddPoint(leftPos);
+                    MeshLines[1].AddPoint(rightPos);
                 }
-              
+
                 Lines[0].AddPoint(leftPos);
                 Lines[1].AddPoint(rightPos);
             }
@@ -263,7 +251,9 @@ public class ARDrawManager : Singleton<ARDrawManager>
 
             if (lineSettings.meshLine)
             {
-                wheeltrailsManager = null;
+                MeshLines.Remove(0);
+                MeshLines.Remove(1);
+
             }
         }
     }
@@ -279,6 +269,12 @@ public class ARDrawManager : Singleton<ARDrawManager>
         GameObject[] lines = GetAllLinesInScene();
         foreach (GameObject currentLine in lines)
         {
+            LineRenderer line = currentLine.GetComponent<LineRenderer>();
+            MeshFilter filter = currentLine.GetComponent<MeshFilter>();
+            if (filter)
+            {
+                Destroy(filter.mesh);
+            }
             Destroy(currentLine);
         }
     }
