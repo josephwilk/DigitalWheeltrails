@@ -158,7 +158,8 @@ public class ARDrawManager : Singleton<ARDrawManager>
                     wheeltrailsManager = wheeltrails.AddComponent<WheeltrailsManager>();
                     wheeltrailsManager.settings = lineSettings;
                     wheeltrailsManager.parent = wheeltrails.transform;
-                    wheeltrailsManager.container = leftAnchor;
+                    wheeltrailsManager.leftContainer = leftAnchor;
+                    wheeltrailsManager.rightContainer = rightAnchor;
 
 
                     //ARMeshLine l = new ARMeshLine(lineSettings);

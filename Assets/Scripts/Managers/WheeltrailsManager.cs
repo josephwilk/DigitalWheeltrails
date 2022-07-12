@@ -9,7 +9,8 @@ public class WheeltrailsManager : MonoBehaviour
 
 	public ARMeshLine left = null;
 	public ARMeshLine right = null;
-	public GameObject container;
+	public GameObject leftContainer;
+	public GameObject rightContainer;
 
 	private Mesh trailMesh;
 	private Vector3 prevPointDistance;
@@ -42,30 +43,37 @@ public class WheeltrailsManager : MonoBehaviour
 
     public void AddPoint(Vector3 point)
     {
-        if(left == null){
-            this.left = new ARMeshLine(settings);
-            this.right = new ARMeshLine(settings);
+		if (left == null)
+		{
+			this.left = new ARMeshLine(settings);
+			this.right = new ARMeshLine(settings);
 
 			_radiusOne = settings.startWidth;
 			_radiusTwo = settings.endWidth;
 
-			left.AddNewMeshRenderer(parent, container, trailMesh);
+			left.AddNewMeshRenderer(parent, leftContainer, trailMesh);
 
 			GameObject offsetTrail = new GameObject("offset");
 			offsetTrail.transform.parent = transform;
-            right.AddNewMeshRenderer(offsetTrail.transform, container, trailMesh);
-			offsetTrail.transform.position = new Vector3(0.785f, 0,0);
+
+			//In AR anchor overides this container...
+			right.AddNewMeshRenderer(offsetTrail.transform, rightContainer, trailMesh);
+			//offsetTrail.transform.position = new Vector3(0.785f, 0, 0);
 
 			left._meshFilter.mesh = trailMesh;
 			right._meshFilter.mesh = trailMesh;
 
-			if (container == null)
+			if (leftContainer == null)
 			{
-				container = gameObject;
+				leftContainer = gameObject;
 			}
-        }
-
-        AddPosition(point);
+			AddPosition(point);
+			AddPosition(point);
+		}
+		else
+		{
+			AddPosition(point);
+		}
     }
 
     // Update is called once per frame
@@ -155,7 +163,6 @@ public class WheeltrailsManager : MonoBehaviour
 		
 			GenerateMesh();
 
-
 			left._meshFilter.mesh = trailMesh;
 			right._meshFilter.mesh = trailMesh;
 		}
@@ -199,7 +206,7 @@ public class WheeltrailsManager : MonoBehaviour
 			var circle = CalculateCircle(i);
 			foreach (var vertex in circle)
 			{
-				_vertices[currentVertIndex++] = _useWorldSpace ? container.transform.InverseTransformPoint(vertex) : vertex;
+				_vertices[currentVertIndex++] = _useWorldSpace ? leftContainer.transform.InverseTransformPoint(vertex) : vertex;
 			}
 		}
 
