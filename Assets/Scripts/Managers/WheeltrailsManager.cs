@@ -57,13 +57,13 @@ public class WheeltrailsManager : MonoBehaviour
 			_radiusOne = settings.startWidth;
 			_radiusTwo = settings.endWidth;
 
-			left.AddNewMeshRenderer(parent, leftContainer, trailMesh);
+			//left.AddNewMeshRenderer(parent, leftContainer, trailMesh);
 
 			GameObject offsetTrail = new GameObject("offset");
 			offsetTrail.transform.parent = transform;
 
 			//In AR anchor overides this container...
-			right.AddNewMeshRenderer(offsetTrail.transform, rightContainer, trailMesh);
+			//right.AddNewMeshRenderer(offsetTrail.transform, rightContainer, trailMesh);
 			//offsetTrail.transform.position = new Vector3(0.785f, 0, 0);
 
 			left._meshFilter.mesh = trailMesh;
