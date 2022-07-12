@@ -44,7 +44,7 @@ public class RibbonTextManager : MonoBehaviour
         //textInputArea.text = currentText;
         float s = limit / textInputArea.text.Length;
         int dup = Mathf.FloorToInt(s);
-        ARDebugManager.Instance.LogInfo($"{dup}");
+
         if (dup > 1)
         {
             string paddedText = "";
@@ -58,7 +58,6 @@ public class RibbonTextManager : MonoBehaviour
         {
             container.text = textInputArea.text.Trim();
         }
-        ARDebugManager.Instance.LogInfo(currentText);
         PlayerPrefs.SetString(WHEELTRAILS_TXT, currentText);
     }
 
