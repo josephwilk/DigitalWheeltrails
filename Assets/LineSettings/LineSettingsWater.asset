@@ -18,7 +18,7 @@ MonoBehaviour:
   startColor: {r: 1, g: 1, b: 1, a: 1}
   endColor: {r: 1, g: 1, b: 1, a: 1}
   startWidth: 0.05
-  endWidth: 0.12
+  endWidth: 0.13
   distanceFromCamera: 0.6
   defaultMaterial: {fileID: 2100000, guid: 7ccc0ab21c91b42e591e0ca854cf294c, type: 2}
   extraMaterial: {fileID: 0}
