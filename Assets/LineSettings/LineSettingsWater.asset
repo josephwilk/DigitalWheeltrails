@@ -14,17 +14,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lineTagName: Line
   meshLine: 1
+  lineOff: 1
   startColor: {r: 1, g: 1, b: 1, a: 1}
   endColor: {r: 1, g: 1, b: 1, a: 1}
   startWidth: 0.05
-  endWidth: 0.1
+  endWidth: 0.12
   distanceFromCamera: 0.6
   defaultMaterial: {fileID: 2100000, guid: 7ccc0ab21c91b42e591e0ca854cf294c, type: 2}
   extraMaterial: {fileID: 0}
   cornerVertices: 140
   endCapVertices: 5
   minDistanceBeforeNewPoint: 0.002
-  textureMode: 1
+  textureMode: 3
   lightData: 1
   lightProb: 1
   shadow: 1
