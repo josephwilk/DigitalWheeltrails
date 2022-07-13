@@ -31,6 +31,6 @@ MonoBehaviour:
   shadow: 1
   allowSmoothing: 0
   dampen: 0.035
-  allowSimplification: 0
+  allowSimplification: 1
   tolerance: 0.002
   applySimplifyAfterPoints: 400

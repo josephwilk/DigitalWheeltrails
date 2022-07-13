@@ -18,7 +18,7 @@ MonoBehaviour:
   startColor: {r: 1, g: 1, b: 1, a: 1}
   endColor: {r: 1, g: 1, b: 1, a: 1}
   startWidth: 0.03
-  endWidth: 0.05
+  endWidth: 0.055
   distanceFromCamera: 0.6
   defaultMaterial: {fileID: 2100000, guid: 0e190abc1547f4f15a412bc1813e7c0a, type: 2}
   extraMaterial: {fileID: 2100000, guid: 4daf8d90b9357498ca033210ccbfba88, type: 2}
@@ -26,7 +26,7 @@ MonoBehaviour:
   endCapVertices: 5
   minDistanceBeforeNewPoint: 0.002
   textureMode: 1
-  lightData: 1
+  lightData: 0
   lightProb: 0
   shadow: 0
   allowSmoothing: 0

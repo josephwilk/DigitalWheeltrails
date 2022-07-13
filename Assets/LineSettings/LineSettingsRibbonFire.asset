@@ -13,10 +13,12 @@ MonoBehaviour:
   m_Name: LineSettingsRibbonFire
   m_EditorClassIdentifier: 
   lineTagName: Line
+  meshLine: 0
+  lineOff: 0
   startColor: {r: 1, g: 1, b: 1, a: 1}
   endColor: {r: 1, g: 1, b: 1, a: 1}
   startWidth: 0.03
-  endWidth: 0.03
+  endWidth: 0.05
   distanceFromCamera: 0.6
   defaultMaterial: {fileID: 2100000, guid: 02771c18b3d8d4bf7a2cb0e3b7524ee1, type: 2}
   extraMaterial: {fileID: 0}

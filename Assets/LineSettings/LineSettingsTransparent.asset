@@ -13,10 +13,12 @@ MonoBehaviour:
   m_Name: LineSettingsTransparent
   m_EditorClassIdentifier: 
   lineTagName: Line
+  meshLine: 0
+  lineOff: 0
   startColor: {r: 1, g: 1, b: 1, a: 1}
   endColor: {r: 1, g: 1, b: 1, a: 1}
-  startWidth: 0.03
-  endWidth: 0.03
+  startWidth: 0.035
+  endWidth: 0.035
   distanceFromCamera: 0.6
   defaultMaterial: {fileID: 2100000, guid: 4daf8d90b9357498ca033210ccbfba88, type: 2}
   extraMaterial: {fileID: 0}

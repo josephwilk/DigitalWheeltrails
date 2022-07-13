@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: LineSettingsRedBig
   m_EditorClassIdentifier: 
   lineTagName: Line
+  meshLine: 0
+  lineOff: 0
   startColor: {r: 0.990566, g: 0.39716092, b: 0.39716092, a: 1}
   endColor: {r: 1, g: 0.031644695, b: 0, a: 0.59607846}
   startWidth: 0.06
