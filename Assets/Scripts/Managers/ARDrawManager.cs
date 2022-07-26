@@ -82,10 +82,12 @@ public class ARDrawManager : Singleton<ARDrawManager>
         if (drawActive)
         {
             drawStatus.Show();
+            Screen.sleepTimeout = SleepTimeout.NeverSleep;
         }
         else
         {
             drawStatus.Hide();
+            Screen.sleepTimeout = SleepTimeout.SystemSetting;
         }
     }
 
