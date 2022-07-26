@@ -35,7 +35,9 @@ public class RibbonTextManager : MonoBehaviour
     private void OnEnable()
     {
         charLimitInput.text = $"{textInputArea.text.Length}/{charLimit}";
-        textInputArea.Select();
+       // textInputArea.Select();
+        textInputArea.ActivateInputField();
+        textInputArea.MoveTextEnd(true);
     }
 
     public void fillTextSpace()
