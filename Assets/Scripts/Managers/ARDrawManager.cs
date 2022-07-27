@@ -18,6 +18,9 @@ public class ARDrawManager : Singleton<ARDrawManager>
     private UIPane drawStatus = null;
 
     [SerializeField]
+    private UIPane tapToDrawPrompt = null;
+
+    [SerializeField]
     private UnityEvent OnDraw = null;
 
     [SerializeField]
@@ -60,6 +63,7 @@ public class ARDrawManager : Singleton<ARDrawManager>
     public void setLineMaterial(LineSettings l)
     {
         lineSettings = l;
+        tapToDrawPrompt.Show();
     }
 
     public bool drawing(){
@@ -81,6 +85,7 @@ public class ARDrawManager : Singleton<ARDrawManager>
         }
         if (drawActive)
         {
+            tapToDrawPrompt.HideFast();
             drawStatus.Show();
             Screen.sleepTimeout = SleepTimeout.NeverSleep;
         }

@@ -35,7 +35,6 @@ public class RibbonTextManager : MonoBehaviour
     private void OnEnable()
     {
         charLimitInput.text = $"{textInputArea.text.Length}/{charLimit}";
-       // textInputArea.Select();
         textInputArea.ActivateInputField();
         textInputArea.MoveTextEnd(true);
     }
@@ -66,9 +65,6 @@ public class RibbonTextManager : MonoBehaviour
 
     public void onTextChange(string txt)
     {
-        //textInputArea.caretPosition = textInputArea.text.Length;
-        //txt = Regex.Replace(txt, @"\n|\r", "");
-        //textInputArea.SetTextWithoutNotify(txt);
         charLimitInput.text = $"{txt.Length}/{charLimit}";
     }
 
