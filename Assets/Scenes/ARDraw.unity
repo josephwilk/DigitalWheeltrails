@@ -901,7 +901,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   accessableToPanesClass: 0
   identity: TapToStartDrawing
-  fadeInTime: 0.25
+  fadeInTime: 0.5
   fadeOutTime: 0
   startHidden: 1
   keepInteractableState: 0
@@ -5607,7 +5607,7 @@ MonoBehaviour:
   m_InstructionalUI: 0
   drawPrompt: {fileID: 157223554}
   m_InstructionalGoal: 0
-  m_ShowSecondaryInstructionalUI: 1
+  m_ShowSecondaryInstructionalUI: 0
   m_SecondaryInstructionUI: 6
   m_SecondaryGoal: 7
   m_CoachingOverlayFallback: 1

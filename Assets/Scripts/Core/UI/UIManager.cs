@@ -256,6 +256,11 @@ public class UIManager : MonoBehaviour
                 {
                     m_FadedOff = true;
                     m_AnimationManager.FadeOffCurrentUI();
+
+                    //This assumes a fixed single Goal of find a plane.
+                    m_AnimationManager.ShowTapToPlace();
+                    drawPrompt.Show();
+
                 }
             }
         }
@@ -369,6 +374,7 @@ public class UIManager : MonoBehaviour
             case InstructionUI.TapToPlace:
                 m_AnimationManager.ShowTapToPlace();
                 drawPrompt.Show();
+
                 break;
 
             case InstructionUI.None:
