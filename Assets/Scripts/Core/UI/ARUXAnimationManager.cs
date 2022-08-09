@@ -275,17 +275,6 @@ public class ARUXAnimationManager : MonoBehaviour
     
     public void ShowTapToPlace()
     {
-        m_VideoPlayer.clip = m_TapToPlaceClip;
-        m_VideoPlayer.Play();
-        if (m_LocalizeText)
-        {
-            m_InstructionText.text = m_LocalizationManager.localizedTapToPlace;
-        }
-        else
-        {
-            m_InstructionText.text = k_TapToPlaceText;
-        }
-        m_FadeOn = true;
         _ardrawmanager.AllowDraw(true);
     }
 

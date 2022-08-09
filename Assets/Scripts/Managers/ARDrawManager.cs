@@ -63,7 +63,7 @@ public class ARDrawManager : Singleton<ARDrawManager>
     public void setLineMaterial(LineSettings l)
     {
         lineSettings = l;
-        tapToDrawPrompt.Show();
+        tapToDrawPrompt.ShowFast();
     }
 
     public bool drawing(){

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.ARFoundation;
+using DilmerGames.UI;
 
 public struct UXHandle
 {
@@ -59,6 +60,10 @@ public class UIManager : MonoBehaviour
         DrawingInProgress,
         None
     };
+
+
+    [SerializeField] UIPane drawPrompt;
+
 
     [SerializeField]
     InstructionGoals m_InstructionalGoal;
@@ -363,6 +368,7 @@ public class UIManager : MonoBehaviour
 
             case InstructionUI.TapToPlace:
                 m_AnimationManager.ShowTapToPlace();
+                drawPrompt.Show();
                 break;
 
             case InstructionUI.None:

@@ -901,7 +901,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   accessableToPanesClass: 0
   identity: TapToStartDrawing
-  fadeInTime: 0
+  fadeInTime: 0.25
   fadeOutTime: 0
   startHidden: 1
   keepInteractableState: 0
