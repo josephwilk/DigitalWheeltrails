@@ -8,6 +8,12 @@ using UnityEngine.EventSystems;
 using UnityEngine.XR.ARFoundation;
 
 
+//using Autodesk.Fbx;
+using UnityFBXExporter;
+using UnityEditor;
+using System.IO;
+
+
 [RequireComponent(typeof(ARAnchorManager))]
 public class ARDrawManager : Singleton<ARDrawManager>
 {
@@ -25,6 +31,15 @@ public class ARDrawManager : Singleton<ARDrawManager>
 
     [SerializeField]
     private Camera arCamera = null;
+
+
+    [SerializeField]
+    private TMPro.TMP_InputField ribbonText = null;
+    [SerializeField]
+    private RenderTexture ribbonTexture = null;
+
+    [SerializeField]
+    private Material templateToFindForExport;
 
     [SerializeField]
     public bool meshMode { get; set; } = false;
@@ -268,7 +283,169 @@ public class ARDrawManager : Singleton<ARDrawManager>
         }
     }
 
-    GameObject[] GetAllLinesInScene()
+
+    public Texture2D toTexture2D(RenderTexture rTex)
+    {
+        Texture2D tex = new Texture2D(rTex.width, rTex.height-200, TextureFormat.RGB24, false);
+        // ReadPixels looks at the active RenderTexture.
+        RenderTexture.active = rTex;
+        tex.ReadPixels(new Rect(0, 0, rTex.width, rTex.height-200), 0, 0);
+        tex.Apply();
+        tex.wrapModeU = TextureWrapMode.Repeat;
+        tex.wrapModeV = TextureWrapMode.Clamp;
+        tex.name = "ribbonStaticText";
+
+        return tex;
+    }
+
+    public void ExportTrail()
+    {
+        Texture2D tx = toTexture2D(ribbonTexture);
+
+        DateTime theTime = DateTime.Now;
+        string ts = theTime.ToString("yyyy-MM-dd\\THH_mm_ss\\Z");
+        int mesh_idx = 0;
+        int line_idx = 0;
+        GameObject[] lines = GetAllLinesInScene();
+
+     
+        string fileName = Application.persistentDataPath + "/" + "southbank.log";
+
+        if (ribbonText)
+        {
+            File.AppendAllText(fileName, "{'ts': '"+ ts +"', 'text': '" +ribbonText.text+"', 'settings':'"+ lineSettings.name +"'}\n");
+        }
+
+        foreach (GameObject currentLine in lines){
+            LineRenderer line = currentLine.GetComponent<LineRenderer>();
+            MeshFilter filter = currentLine.GetComponent<MeshFilter>();
+
+             if (line){
+
+                string filename = ts + "_" + line_idx + "_Line.fbx";
+                line_idx++;
+
+
+                Mesh lineMesh = new Mesh();
+                line.BakeMesh(lineMesh);
+                lineMesh.Optimize();
+                lineMesh.RecalculateNormals();
+                lineMesh.RecalculateBounds();
+
+
+                GameObject export = new GameObject($"LineExport");
+
+                //export.transform.position = currentLine.transform.position;
+                export.transform.rotation = currentLine.transform.rotation;
+                //export.transform.localScale = currentLine.transform.localScale;
+                //export.transform.localPosition = currentLine.transform.localPosition;
+                //export.transform.localRotation = currentLine.transform.localRotation;
+
+                MeshRenderer _meshRender = export.AddComponent<MeshRenderer>();
+                MeshFilter _meshFilter = export.AddComponent<MeshFilter>();
+                _meshFilter.mesh = lineMesh;
+
+                Material m = new Material(Shader.Find(templateToFindForExport.shader.name));
+                m.SetTexture("_MainTex", tx);
+                _meshRender.material = m;
+                //_meshRender.material.SetTexture("_MainTex", tx);
+
+                try
+                {
+                    ExportGameObject(export, "/"+ts, filename, "/Textures/");
+                }
+                catch (Exception ex)
+                {
+                    Debug.LogException(ex);
+                }
+
+                Destroy(lineMesh);
+                Destroy(export);
+                
+            }
+            if (filter)
+            {
+                string filename = ts + "_" + mesh_idx + "_Mesh.fbx";
+                mesh_idx++;
+
+                GameObject export = new GameObject($"MeshExport");
+                //export.transform.parent = currentLine.transform.parent;
+                export.transform.position = currentLine.transform.position;
+                export.transform.rotation = currentLine.transform.rotation;
+                //export.transform.localScale = currentLine.transform.localScale;
+                //export.transform.localPosition = currentLine.transform.localPosition;
+                //export.transform.localRotation = currentLine.transform.localRotation;
+
+                MeshRenderer rend = currentLine.GetComponent<MeshRenderer>();
+
+                MeshRenderer _meshRender = export.AddComponent<MeshRenderer>();
+                MeshFilter _meshFilter = export.AddComponent<MeshFilter>();
+                _meshFilter.mesh = filter.mesh;
+                _meshRender.material = new Material(Shader.Find(templateToFindForExport.shader.name));
+
+                try
+                {
+                    ExportGameObject(export, "/" + ts, filename, "/Textures/");
+                }
+                catch (Exception ex)
+                {
+                    Debug.LogException(ex);
+                }
+                Destroy(export);
+
+            }
+
+        }
+        byte[] bytes = tx.EncodeToPNG();
+        File.WriteAllBytes(Application.persistentDataPath + "/" + ts + "/" + ts + ".png", bytes);
+
+
+    }
+
+
+
+    public static bool ExportGameObject(GameObject rootGameObject, string folderPath, string fileName, string textureFolderName)
+    {
+        if (rootGameObject == null)
+        {
+            Debug.Log("Root game object is null, please assign it");
+            return false;
+        }
+
+        // forces use of forward slash for directory names
+        folderPath = folderPath.Replace('\\', '/');
+        textureFolderName = textureFolderName.Replace('\\', '/');
+
+        folderPath = Application.persistentDataPath + folderPath;
+
+        if (System.IO.Directory.Exists(folderPath) == false)
+        {
+            System.IO.Directory.CreateDirectory(folderPath);
+        }
+
+        if (System.IO.Path.GetExtension(fileName).ToLower() != ".fbx")
+        {
+            Debug.LogError(fileName + " does not end in .fbx, please save a file with the extension .fbx");
+            return false;
+        }
+
+        if (folderPath[folderPath.Length - 1] != '/')
+            folderPath += "/";
+
+        if (System.IO.File.Exists(folderPath + fileName))
+            System.IO.File.Delete(folderPath + fileName);
+
+        bool exported = FBXExporter.ExportGameObjAtRuntime(rootGameObject, folderPath, fileName, textureFolderName, false);
+
+#if UNITY_EDITOR
+        UnityEditor.AssetDatabase.Refresh();
+#endif
+        return exported;
+    }
+
+
+
+GameObject[] GetAllLinesInScene()
     {
         return GameObject.FindGameObjectsWithTag("Line");
     }

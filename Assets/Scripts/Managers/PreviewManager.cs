@@ -5,6 +5,11 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using DilmerGames.UI;
 
+using System.IO;
+using UnityEngine;
+using UnityEditor;
+
+
 public class PreviewManager : MonoBehaviour
 {
     [SerializeField]
@@ -24,6 +29,9 @@ public class PreviewManager : MonoBehaviour
     [SerializeField]
     private ScreenCapture screenshotManager;
 
+    [SerializeField]
+    private ARDrawManager drawManager;
+
     private bool interacted = false;
 
     public void DownloadPreview()
@@ -32,6 +40,34 @@ public class PreviewManager : MonoBehaviour
         disableSave();
         interacted = true;
     }
+
+
+    public void ExportMesh()
+    {
+
+        drawManager.ExportTrail();
+
+        //using (FbxManager fbxManager = FbxManager.Create())
+        //{
+        //    // configure IO settings.
+        //    fbxManager.SetIOSettings(FbxIOSettings.Create(fbxManager, Globals.IOSROOT));
+
+        //    // Export the scene
+        //    using (FbxExporter exporter = FbxExporter.Create(fbxManager, "myExporter"))
+        //    {
+
+        //        // Initialize the exporter.
+        //        bool status = exporter.Initialize(fileName, -1, fbxManager.GetIOSettings());
+
+        //        // Create a new scene to export
+        //        FbxScene scene = FbxScene.Create(fbxManager, "myScene");
+
+        //        // Export the scene to the file.
+        //        exporter.Export(scene);
+        //    }
+        //}
+    }
+
 
     public void Share()
     {

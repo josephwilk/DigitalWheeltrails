@@ -30,6 +30,7 @@ public class ARMeshLine
 	{
 		this.settings = l;
 		this.trailMesh = new Mesh();
+		this.trailMesh.MarkDynamic();
 	}
 
 	public void AddPoint(Vector3 point)
